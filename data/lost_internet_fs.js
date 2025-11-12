@@ -18,10 +18,10 @@ Please proceed with caution.
 2) cat quickstart.txt for the streamlined checklist
 3) cat readme.txt and solution.txt if you want spoilers or guidance
 4) Follow the LADDER clue in /sites/geocities/guestbook.log
-5) Solve the two puzzle slips in /puzzles/ using submit <answer>
+5) Solve the three puzzle slips in /puzzles/ using submit <answer>
 6) Collect fragments fragment_01, fragment_02, fragment_03 (puzzles nudge you to the right files)
 7) echo the fragments into /mnt/oldnet/workbench/assembled_fragments.txt (see quickstart.txt for the exact command)
-8) unlock_manifesto echelon (short keyword - the project name)
+8) unlock_manifesto echelon
 9) cat /mnt/oldnet/truth/manifesto_fragment.txt for the restored manifesto.
 
 Good luck.`,
@@ -179,7 +179,7 @@ reply3: remember to check mod_logs/mod_action_2006.log`,
         'deleted': {
           'ai_comment.log': `[bot-4321] 2006-06-12T13:49:59Z: "Indices complete. Reporting ENTROPY low. Recommend prune."
 [bot-4321] 2006-06-12T13:50:03Z: "Sanitation applied to thread."
-[bot-4321] 2006-06-12T13:50:05Z: "Signal maintains memory. ENTROPY is the answer."
+[bot-4321] 2006-06-12T13:50:05Z: "Signal maintains memory via Entropy."
 (note: admin override at 2006-06-12T13:58)`,
           
           'fragment_02.txt': `fragment_02:
@@ -234,7 +234,14 @@ Need help? The answer is lowercase.`,
 2. Look for what the signal maintains - the answer is a single word.
 3. Check the bot logs for the key term.
 4. submit <one word answer>
-Reward: unlocks advanced hints pointing to the manifesto.`
+Reward: unlocks advanced hints pointing to the manifesto.`,
+
+      'puzzle_checksum.txt': `PUZZLE 03 - FIRST LETTERS
+1. Find a file that contains verification or checksum information
+2. Read the file and look at the first letter of each sentence
+3. The first letters spell a word - that's your answer
+4. submit <that word>
+Reward: unlocks final hints for the manifesto.`
     },
 
     'users': {
@@ -275,7 +282,7 @@ Date: Fri, 31 Aug 2007 00:13:00 +0000
 
 Echo me by running: history | tail -3
 Then look for /mnt/oldnet/echoes/whisper.log
-The signal maintains memory. The answer is: ENTROPY`
+The signal maintains memory via Entropy.`
         },
         
         'downloads': {
@@ -323,7 +330,19 @@ Reminder: LADDER clue hidden in geocities secret.`
 
       'manifesto_checksum.txt': `checksum hint:
 sha256(manifesto_fragment.txt) ≈ 2d2f... (truncated)
-If your assembled fragments read differently, re-run the LADDER steps.`
+If your assembled fragments read differently, re-run the LADDER steps.`,
+      
+      'verification_log.txt': `Checksum verification ensures data integrity across the archive.
+Hash functions generate unique fingerprints for each file.
+Each file modification changes its cryptographic signature.
+Cryptographic hashes prevent unauthorized tampering.
+Key validation confirms the authenticity of recovered fragments.
+System logs track all changes to manifest files.
+Unauthorized edits leave traces in the verification chain.
+Manifesto fragments require verification before assembly.`,
+      
+      'checksum_hint.txt': `Look in workbench/verification_log.txt
+Read the first letter of each sentence.`
     },
     
     'secure': {
@@ -347,10 +366,9 @@ An empty checksum (d41d8cd98f00b204e9800998ecf8427e) means deliberate removal.
 Look for text fragments outside /secure/ that mirror missing titles.`,
 
       'backdoor.log': `[sysop handshake]
-phrase_one = signal maintains memory (answer: ENTROPY)
+phrase_one = signal maintains memory
 phrase_two = LADDER points to echoes
-If both phrases spoken, grant archivist read-only access to truth.
-[LOG] The answer is entropy. The signal maintains memory through entropy.`
+If both phrases spoken, grant archivist read-only access to truth.`
     },
     
     'truth': {

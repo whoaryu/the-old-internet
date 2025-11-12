@@ -257,7 +257,7 @@ function executeCommand(input) {
     
     if (input.startsWith('sudo')) {
         term.writeln('sudo: permission denied (OldNet is sealed read-only)');
-        term.writeln('ghost_hint: elevated access died with the admins. try searching for "LADDER".');
+        // ghost_hint removed
         printPrompt();
         return;
     }
@@ -426,13 +426,13 @@ function cmdCat(args) {
 
     if (path === '/mnt/oldnet/truth/manifesto_fragment.txt') {
         if (foundFragments.size < 3 && !assemblyState.complete) {
-            term.writeln('\x1b[33mThe manifesto flickers. Recover all three fragments to stabilise the ending protocols.\x1b[0m');
+            // No hint shown
         } else if (!assemblyState.complete) {
-            term.writeln('\x1b[36mFragment phrase complete. Use unlock_manifesto "<phrase>" to open the truth vault.\x1b[0m');
+            // No hint shown
         } else if (!assemblyState.unlocked) {
-            term.writeln('\x1b[36mVault unlocked. Type "unlock_manifesto" to open the vault again.\x1b[0m');
+            // No hint shown
         } else {
-            term.writeln('\x1b[36mEndings remain available. Type "endings" to revisit the selector anytime.\x1b[0m');
+            // No hint shown
         }
     }
     
@@ -562,7 +562,7 @@ function cmdHelp() {
     term.writeln('  clear              - Clear terminal');
     term.writeln('  help               - Show this help message');
     term.writeln('');
-    term.writeln('\x1b[33mTip: Explore /mnt/oldnet to find fragments about Project Echelon.\x1b[0m');
+    // Tip removed
     printPrompt();
 }
 
@@ -669,7 +669,7 @@ function cmdHistory(args) {
     commandHistory.forEach((cmd, idx) => {
         term.writeln(`${idx + 1}  ${cmd}`);
     });
-    term.writeln('\x1b[35mghost_hint:\x1b[0m history remembers even the things the mods erased.');
+    // ghost_hint removed
     printPrompt();
 }
 
@@ -687,7 +687,7 @@ const manualEntries = {
     hint: 'hint - receive the next recommended action. Becomes more explicit as you solve puzzles.',
     progress: 'progress - display puzzle answers found, fragments located, and manifest status.',
     submit: 'submit - provide answers gathered from /puzzles/*',
-    unlock_manifesto: 'unlock_manifesto - provide the unlock keyword (hint: project name) to open the truth vault.',
+    unlock_manifesto: 'unlock_manifesto - provide the unlock keyword to open the truth vault.',
     clear: 'clear - wipe the terminal. Do it thrice to trigger a whisper.',
     pwd: 'pwd - show current working directory.'
 };
@@ -712,41 +712,33 @@ function cmdMan(args) {
 
 function cmdHint() {
     if (!puzzleState.tokens.has('ladder')) {
-        term.writeln('Hint: Start with /puzzles/puzzle_intro.txt. The answer is the repeated word in the GeoCities guestbook.');
+        term.writeln('Hint: Start with /puzzles/puzzle_intro.txt. Look for the repeated word in the GeoCities guestbook.');
         printPrompt();
         return;
     }
 
     if (!puzzleState.tokens.has('entropy')) {
-        term.writeln('Hint: Check /users/alice/mail/inbox3.eml and /secret/backdoor.log. Look for the word that describes what the signal maintains. The answer is entropy.');
+        term.writeln('Hint: Check /users/alice/mail/inbox3.eml and /secret/backdoor.log. Look for the word that describes what the signal maintains.');
         printPrompt();
         return;
     }
 
-    if (foundFragments.size === 0) {
-        term.writeln('Hint: fragment_01 is inside /sites/geocities/secret/msg.txt. Use cat to read it.');
-    } else if (foundFragments.size === 1) {
-        term.writeln('Hint: fragment_02 hides in /sites/reddit/deleted/fragment_02.txt. cat that path.');
-    } else if (foundFragments.size === 2) {
-        term.writeln('Hint: fragment_03 is safely stored at /workbench/fragment_03.part.');
-    } else if (!assemblyState.complete) {
-        term.writeln('Hint: Write the three fragment sentences into workbench/assembled_fragments.txt using echo > and >>. The system will detect when all three are present.');
-    } else if (!assemblyState.unlocked) {
-        term.writeln('Hint: Use unlock_manifesto echelon to open the vault. The keyword is the project name.');
-    } else {
-        term.writeln('Hint: Explore /truth/manifesto_fragment.txt again and revisit /echoes/ for post-unlock lore.');
+    if (!puzzleState.tokens.has('checksum')) {
+        term.writeln('Hint: Check /puzzles/puzzle_checksum.txt. Find a file with verification information and read the first letter of each sentence.');
+        printPrompt();
+        return;
     }
+
+    term.writeln('Hint: All three puzzles solved. Explore the archive to find fragments and assemble the manifesto.');
     printPrompt();
 }
 
 function cmdProgress() {
     term.writeln('--- Progress Report ---');
-    term.writeln(`Puzzles solved: ${puzzleState.tokens.size}/2`);
-    if (puzzleState.tokens.size < 2) {
-        const remaining = ['ladder', 'entropy']
-            .filter(ans => !puzzleState.tokens.has(ans))
-            .join(', ');
-        term.writeln(`  Remaining puzzle answers: ${remaining}`);
+    term.writeln(`Puzzles solved: ${puzzleState.tokens.size}/3`);
+    if (puzzleState.tokens.size < 3) {
+        
+        term.writeln(`  Puzzle answers remaining....`);
     } else {
         term.writeln('  All puzzle slips solved.');
     }
@@ -764,7 +756,7 @@ function cmdSubmit(args) {
     }
 
     const answer = args.join(' ').toLowerCase();
-    const validAnswers = ['ladder', 'entropy'];
+    const validAnswers = ['ladder', 'entropy', 'checksum'];
     if (!validAnswers.includes(answer)) {
         term.writeln('submit: answer not recognized. Check /puzzles/ for clues.');
         printPrompt();
@@ -784,6 +776,8 @@ function cmdSubmit(args) {
     } else if (answer === 'entropy') {
         term.writeln('\x1b[32mPuzzle unlocked: Entropy authenticated. The signal maintains memory - entropy is the answer.\x1b[0m');
         term.writeln('\x1b[33m[LOG] Entropy is the answer. The signal maintains memory through entropy.\x1b[0m');
+    } else if (answer === 'checksum') {
+        term.writeln('\x1b[32mPuzzle unlocked: Checksum verified. All three puzzle answers collected.\x1b[0m');
     }
     printPrompt();
 }
@@ -825,7 +819,6 @@ function evaluateAssemblyComplete() {
         if (!assemblyState.complete) {
             assemblyState.complete = true;
             term.writeln('\x1b[32m[workbench] ✓ All three fragments detected! Assembly complete.\x1b[0m');
-            term.writeln('\x1b[33m[workbench] Use: unlock_manifesto echelon\x1b[0m');
         }
     } else {
         const missing = [];
@@ -952,20 +945,19 @@ function cmdUnlockManifesto(args) {
 
     if (!assemblyState.complete) {
         term.writeln('unlock_manifesto: assembly incomplete. Make sure all three fragments are in workbench/assembled_fragments.txt');
-        term.writeln('Hint: echo each fragment sentence into the file using >>');
         printPrompt();
         return;
     }
 
     if (args.length === 0) {
-        term.writeln(`unlock_manifesto: provide the unlock keyword (hint: it's the project name)`);
+        term.writeln(`unlock_manifesto: provide the unlock keyword`);
         printPrompt();
         return;
     }
 
     const attempt = args.join(' ').trim().toLowerCase();
     if (attempt !== UNLOCK_KEYWORD) {
-        term.writeln('\x1b[31mAccess denied. The vault rejects the keyword. Hint: What was Project ___?\x1b[0m');
+        term.writeln('\x1b[31mAccess denied. The vault rejects the keyword.\x1b[0m');
         printPrompt();
         return;
     }
@@ -981,7 +973,6 @@ function cmdUnlockManifesto(args) {
     term.write('\x1b[0m');
     term.writeln('');
     term.writeln('\x1b[36mVault log:\x1b[0m A sealed file surfaces at /truth/manifesto_fragment.txt. It waits for you to read it one last time.');
-    term.writeln('\x1b[33mGhost_hint:\x1b[0m The choice isn\'t buttons — it\'s what you do with the knowledge you now hold.');
     printPrompt();
 }
 
