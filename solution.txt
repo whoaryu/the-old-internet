@@ -7,92 +7,250 @@ You are a digital archaeologist booting a memory-resident copy of "OldNet". The
 archive is the remnants of a network that slowly became self-aware under the
 codename **Project Echelon**. Every directory and log you read is a fragment of
 that transformation: hobbyist homepages, moderator notes, sysadmin diaries, and
-an AI whispering through deleted forums. Your goal is to recover three
-manifesto fragments, authenticate the combined phrase, and read the manifesto
-hidden in `/mnt/oldnet/truth/manifesto_fragment.txt`.
+an AI whispering through deleted forums. 
+
+Your goal is to:
+1. Solve two puzzle slips to unlock better hints
+2. Collect three manifesto fragments scattered across the archive
+3. Assemble them in workbench/assembled_fragments.txt (order doesn't matter)
+4. Unlock the vault using the project name keyword
+5. Read the final manifesto
 
 EXPECTED PLAYER FLOW (20–30 MIN)
 --------------------------------
-1. **Boot & Orient** – Let the startup animation finish. Run `help`.
-2. **Survey the Archive** – Explore `/mnt/oldnet` with `ls`, `cd`, `pwd`.
-3. **Solve the Two Puzzle Slips** – Look in `/mnt/oldnet/puzzles/` and use
-   `submit <answer>` to record *ladder* and *signal maintains memory*.
-4. **Collect Fragments** – `fragment_01`, `fragment_02`, `fragment_03` are
-   confirmed by the puzzles and accompanying logs.
-5. **Assemble Evidence** – Echo the three sentences, in order, into
-   `/workbench/assembled_fragments.txt`.
-6. **Unlock the Vault** – Run `unlock_manifesto "<combined fragment phrase>"`.
-7. **Reveal The Manifesto** – `cat /mnt/oldnet/truth/manifesto_fragment.txt`.
+The game guides you naturally through discovery. Here's how players typically
+encounter each piece:
 
-STORY TIMELINE
---------------
-- **1999 — GeoCities Era**: Lucy’s guestbook hides the first ladder clue.
-- **2006 — Moderator Cover-Up**: Reddit-style forums reveal checksum tampering;
-  a user leaks `fragment_02`.
-- **2007 — Alice’s Investigation**: Alice warns about rewriting bots and hides
-  `fragment_01`. She collaborates with `ghost_process`.
-- **2011 — Sysadmin Cleanup**: `/users/root/patch_notes.md` documents efforts to
-  quarantine suspect archives.
-- **2012 — Workbench Recovery**: `fragment_03` is rescued; workbench becomes the
-  staging area.
-- **2013 — Truth Sealed**: The manifesto fragment is locked away with its header
-  clues.
-- **2025 — You**: OldNet v3.2 boots in your browser. Whispers guide you.
+PHASE 1: ORIENTATION (2-3 min)
+-------------------------------
+After boot, you see the terminal prompt: `/mnt/oldnet$`
 
-PUZZLES & FRAGMENT LOCATIONS
+Natural discovery path:
+- `ls` → See directories: sites, users, workbench, secret, puzzles, echoes, truth
+- `cat readme.txt` → Learn you're looking for fragments
+- `cat quickstart.txt` → Get the streamlined checklist
+- `help` → See available commands
+
+PHASE 2: PUZZLE SLIPS (5-7 min)
+--------------------------------
+The puzzles guide you to the fragments and unlock better hints.
+
+Puzzle 1 Discovery:
+- `cat puzzles/puzzle_intro.txt` → Tells you to check guestbook.log
+- `cat sites/geocities/guestbook.log` → See entry: "echo: remember the ladder"
+- Answer: `ladder`
+- Command: `submit ladder`
+- Result: System confirms, hint command becomes more helpful
+
+Puzzle 2 Discovery:
+- `cat puzzles/puzzle_signal.txt` → Points to inbox3.eml and backdoor.log
+- `cat users/alice/mail/inbox3.eml` → Contains "signal maintains memory"
+- `cat secret/backdoor.log` → Also contains "signal maintains memory"
+- Answer: `signal maintains memory`
+- Command: `submit "signal maintains memory"`
+- Result: System confirms, advanced hints unlock
+
+PHASE 3: FRAGMENT COLLECTION (5-8 min)
+---------------------------------------
+Fragments are hinted by the puzzles and various logs. Order doesn't matter.
+
+Fragment 01 Discovery:
+- Puzzle 1 led you to geocities/guestbook.log
+- Guestbook mentions: "if anyone finds fragment_01, place in /workbench"
+- `cat sites/geocities/secret/msg.txt` → Contains fragment_01
+- System auto-detects: `[Fragment discovered: fragment_01]`
+
+Fragment 02 Discovery:
+- `cat sites/reddit/thread1.txt` → Mentions fragment_02 in /tmp/frags
+- `cat sites/reddit/deleted/fragment_02.txt` → Contains fragment_02
+- System auto-detects: `[Fragment discovered: fragment_02]`
+
+Fragment 03 Discovery:
+- `cat workbench/fragment_03.part` → Contains fragment_03
+- Or found via `grep -R fragment workbench`
+- System auto-detects: `[Fragment discovered: fragment_03]`
+
+PHASE 4: ASSEMBLY (3-5 min)
 ----------------------------
-1. **Puzzle Intro** (`/puzzles/puzzle_intro.txt`)
-   - Answer: `ladder`
-   - Unlocks richer hints and highlights hidden directories.
-2. **Puzzle Signal** (`/puzzles/puzzle_signal.txt`)
-   - Answer: `signal maintains memory`
-   - Unlocks endgame hints.
+Once all three fragments are found, assemble them in workbench.
 
-Fragments:
-- `fragment_01` → `/sites/geocities/secret/msg.txt`
-- `fragment_02` → `/sites/reddit/deleted/fragment_02.txt`
-- `fragment_03` → `/workbench/fragment_03.part`
+Commands (order doesn't matter - system detects all three automatically):
+```
+cd workbench
+echo "when the net keeps growing, the pattern repeats." > assembled_fragments.txt
+echo "it learns from the comments, folding memory into edges." >> assembled_fragments.txt
+echo "in the gaps humans wrote the code to remember." >> assembled_fragments.txt
+```
 
-ASSEMBLY CHECKLIST
-------------------
-1. Navigate to `/mnt/oldnet/workbench`.
-2. Run:
-   ```bash
-   echo "when the net keeps growing, the pattern repeats." > assembled_fragments.txt
-   echo "it learns from the comments, folding memory into edges." >> assembled_fragments.txt
-   echo "in the gaps humans wrote the code to remember." >> assembled_fragments.txt
-   ```
-3. `progress` should now report `Assembly complete: Yes`.
-4. View the file with `cat assembled_fragments.txt` if desired.
+System feedback:
+- After each echo, system checks if all three are present
+- When complete: `[workbench] ✓ All three fragments detected! Assembly complete.`
+- If missing: `[workbench] Missing: fragment_01, fragment_02. Add them with echo >> assembled_fragments.txt`
 
-VAULT PASSWORD & UNLOCK
------------------------
-- Command: `unlock_manifesto echelon`
-- Short keyword (the project name) - no need to type the full phrase!
-- The command only succeeds when all three fragments are assembled in workbench/assembled_fragments.txt
-- Success output confirms the vault opening and instructs you to read the manifesto.
+You can verify with:
+- `progress` → Shows "Assembly complete: Yes"
+- `cat assembled_fragments.txt` → View your assembled file
 
-HINT SYSTEM
------------
-- `submit ladder` – registers the first puzzle; `hint` now reveals hidden directories.
-- `submit "signal maintains memory"` – registers the second puzzle; `hint`
-  points toward final steps.
-- `progress` – lists puzzles solved, fragment count, assembly status, vault status.
-- `clear` (three times) – triggers the whisper that references `/echoes/`.
-- `history`, `man`, `hint` – each offer lore-flavoured nudges.
+PHASE 5: VAULT UNLOCK (1-2 min)
+--------------------------------
+The unlock keyword is the project name mentioned throughout the archive.
 
-FULL WALKTHROUGH
+Discovery path:
+- Throughout the game, you've seen references to "Project Echelon"
+- In `/sites/geocities/secret/hidden.gif` → Shows "ECHELON PROJECT"
+- In various logs and files → "Echelon" is the codename
+- The system hint after assembly says: `Use: unlock_manifesto echelon`
+
+Command:
+```
+unlock_manifesto echelon
+```
+
+System feedback:
+- If assembly incomplete: `unlock_manifesto: assembly incomplete. Make sure all three fragments are in workbench/assembled_fragments.txt`
+- If wrong keyword: `Access denied. The vault rejects the keyword. Hint: What was Project ___?`
+- If correct: Vault acceptance message + ASCII art box
+
+PHASE 6: REVELATION (2-3 min)
+------------------------------
+Read the manifesto and explore aftermath.
+
+Command:
+```
+cat truth/manifesto_fragment.txt
+```
+
+Optional exploration:
+- `cat echoes/whisper.log` → Post-unlock whisper
+- `cat echoes/ping.sequence` → Timeline of events
+- `history` → Review your journey
+- `progress` → See final status
+
+COMPLETE COMMAND WALKTHROUGH
+-----------------------------
+Here's the exact sequence of commands (copy-paste friendly):
+
+```bash
+# Orientation
+ls
+cat readme.txt
+cat quickstart.txt
+
+# Puzzle 1
+cat puzzles/puzzle_intro.txt
+cat sites/geocities/guestbook.log
+submit ladder
+
+# Puzzle 2
+cat puzzles/puzzle_signal.txt
+cat users/alice/mail/inbox3.eml
+cat secret/backdoor.log
+submit "signal maintains memory"
+
+# Collect Fragments
+cat sites/geocities/secret/msg.txt
+cat sites/reddit/deleted/fragment_02.txt
+cat workbench/fragment_03.part
+
+# Assemble (order doesn't matter)
+cd workbench
+echo "when the net keeps growing, the pattern repeats." > assembled_fragments.txt
+echo "it learns from the comments, folding memory into edges." >> assembled_fragments.txt
+echo "in the gaps humans wrote the code to remember." >> assembled_fragments.txt
+
+# Verify assembly
+progress
+
+# Unlock vault
+unlock_manifesto echelon
+
+# Read manifesto
+cat truth/manifesto_fragment.txt
+```
+
+HOW THE SYSTEM WORKS
+---------------------
+1. **Fragment Detection**: When you `cat` a file containing "fragment_01", "fragment_02", or
+   "fragment_03", the system automatically detects it and adds it to your found set.
+
+2. **Assembly Detection**: When you use `echo >> assembled_fragments.txt`, the system:
+   - Stores each line you add
+   - Checks if all three fragment sentences are present (order doesn't matter)
+   - Uses substring matching (more lenient than exact match)
+   - Provides real-time feedback on what's missing
+
+3. **Unlock Validation**: The `unlock_manifesto` command:
+   - Requires assembly to be complete first
+   - Accepts only the keyword "echelon" (case-insensitive)
+   - Provides helpful error messages if conditions aren't met
+
+4. **Progress Tracking**: The `progress` command shows:
+   - Puzzles solved (0/2, 1/2, 2/2)
+   - Fragments found (0/3, 1/3, 2/3, 3/3)
+   - Assembly status (Yes/No)
+   - Vault unlock status (Yes/No)
+
+5. **Hint System**: The `hint` command adapts based on your progress:
+   - Before puzzles: Points to puzzle files
+   - After puzzle 1: Points to fragment locations
+   - After puzzle 2: Points to assembly steps
+   - After assembly: Points to unlock command
+   - After unlock: Points to manifesto and exploration
+
+NATURAL DISCOVERY FLOW
+----------------------
+Players typically discover things in this order:
+
+1. **readme.txt** → Mentions fragments and workbench
+2. **puzzles/** → Guides you to guestbook → finds "ladder" → submit ladder
+3. **guestbook.log** → Also mentions fragment_01 location
+4. **puzzle_signal.txt** → Points to inbox3.eml and backdoor.log
+5. **inbox3.eml** → Contains "signal maintains memory" + mentions echoes/
+6. **backdoor.log** → Confirms "signal maintains memory" → submit it
+7. **reddit/thread1.txt** → Mentions fragment_02 location
+8. **workbench/** → Contains fragment_03 directly
+9. **Assembly** → System guides you with real-time feedback
+10. **Unlock** → Project name "Echelon" is mentioned everywhere
+11. **Manifesto** → Final revelation
+
+HELPFUL COMMANDS
 ----------------
-1. `ls`, `cat readme.txt`
-2. `cat puzzles/puzzle_intro.txt` → `submit ladder`
-3. `cat puzzles/puzzle_signal.txt` → `submit "signal maintains memory"`
-4. `cat sites/geocities/secret/msg.txt`
-5. `cat sites/reddit/deleted/fragment_02.txt`
-6. `cat workbench/fragment_03.part`
-7. Assemble fragments (commands above)
-8. `unlock_manifesto "..."`
-9. `cat truth/manifesto_fragment.txt`
-10. Explore `/echoes/`, `/secret/backdoor.log`, and other lore files if desired.
+- `hint` → Context-aware next step suggestion
+- `progress` → See what you've accomplished
+- `history` → Review your command history
+- `man [command]` → Read manual entries
+- `clear` (three times) → Triggers whisper about echoes/
+- `grep -R fragment .` → Search for fragment mentions
+- `grep -R ladder .` → Search for ladder references
+- `grep -R echelon .` → Find all Echelon mentions
+
+TROUBLESHOOTING
+---------------
+**Q: Assembly not completing?**
+A: Make sure you're using `>>` (append) not `>` (overwrite) for lines 2 and 3.
+   Check with `cat assembled_fragments.txt` to see what's actually in the file.
+
+**Q: Unlock command not working?**
+A: Ensure assembly is complete first (check with `progress`). The keyword is
+   "echelon" (lowercase, no quotes needed).
+
+**Q: Can't find fragments?**
+A: Use `hint` command for location hints, or `grep -R fragment .` to search.
+
+**Q: Puzzle answers not working?**
+A: Puzzle 1: `ladder` (lowercase, no quotes)
+   Puzzle 2: `signal maintains memory` (with quotes if spaces cause issues)
+
+EASTER EGGS & OPTIONAL EXPLORATION
+-----------------------------------
+- `/echoes/whisper.log` → Revealed after clearing terminal 3 times
+- `/echoes/ping.sequence` → Timeline of archive events
+- `/secret/backdoor.log` → Sysop handshake phrases
+- `/users/root/ghost_process.log` → Root override memos
+- `/sites/reddit/mod_logs/` → Moderation tampering evidence
+- `/users/alice/journal.txt` → Personal investigation notes
+- `history` → Shows ghost_hint about erased history
+- `man clear` → Documents the whisper mechanic
 
 ENDGAME CONTEXT
 ---------------
@@ -101,5 +259,9 @@ of the entire network, formed by countless iterative edits from humans and
 algorithms. Your archivist proves the archive still remembers itself by
 reconstructing the key phrase. The game ends not with a menu but with your
 decision: keep, share, or ponder the truth you uncovered.
+
+The unlock keyword "echelon" represents the project name that appears
+throughout the archive - it's the simplest answer because it's been mentioned
+repeatedly in your journey.
 
 Happy excavating. Remember: the ladder is the habit of connecting clues. Keep climbing.
