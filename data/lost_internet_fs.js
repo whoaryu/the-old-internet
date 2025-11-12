@@ -17,7 +17,7 @@ Please proceed with caution.
 1) cd /mnt/oldnet
 2) cat quickstart.txt for the streamlined checklist
 3) cat readme.txt and solution.txt if you want spoilers or guidance
-4) Follow the ladder clue in /sites/geocities/guestbook.log
+4) Follow the LADDER clue in /sites/geocities/guestbook.log
 5) Solve the two puzzle slips in /puzzles/ using submit <answer>
 6) Collect fragments fragment_01, fragment_02, fragment_03 (puzzles nudge you to the right files)
 7) echo the fragments into /mnt/oldnet/workbench/assembled_fragments.txt (see quickstart.txt for the exact command)
@@ -30,8 +30,8 @@ Good luck.`,
 --------------------------
 1. ls              # note directories (sites, users, workbench, secret, puzzles, echoes, truth)
 2. cat readme.txt  # orientation
-3. cat puzzles/puzzle_intro.txt  # pick up the first answer (submit ladder)
-4. cat puzzles/puzzle_signal.txt # second answer (submit signal)
+3. cat puzzles/puzzle_intro.txt  # pick up the first answer
+4. cat puzzles/puzzle_signal.txt # second answer
 5. fragment_01 -> cat sites/geocities/secret/msg.txt
 6. fragment_02 -> cat sites/reddit/deleted/fragment_02.txt
 7. fragment_03 -> cat workbench/fragment_03.part
@@ -56,10 +56,10 @@ Good luck.`,
  OPTIONAL INVESTIGATIONS
  - Trace moderation tampering via /sites/reddit/... logs.
  - Explore user directories (especially /users/alice and /users/root) for background on Project Echelon.
- - Follow the "ladder" references; they point toward the hidden /mnt/oldnet/echoes/ directory.
+ - Follow the "LADDER" references; they point toward the hidden /mnt/oldnet/echoes/ directory.
  - Clear the terminal three times to receive a whisper pointing to the echoes.
  - Use history and man for extra context stored in the terminal shell itself.
- - Puzzles: /puzzles/puzzle_intro.txt and /puzzles/puzzle_signal.txt give answers for submit ladder and submit signal, unlocking extra hints via progress and hint commands.
+ - Puzzles: /puzzles/puzzle_intro.txt and /puzzles/puzzle_signal.txt give answers that unlock extra hints via progress and hint commands.
  
  QUICK WALKTHROUGH
  1. cd /mnt/oldnet && ls to see top-level directories (sites, users, workbench, secret, truth, echoes).
@@ -78,11 +78,11 @@ Good luck.`,
  - clear x3: Clearing the terminal three times triggers a whisper telling you to check /mnt/oldnet/echoes/whisper.log.
  - history: Shows your command log and prints a ghost_hint. The e-mail from ghost_process references history | tail -3.
  - man: Added manual pages give lore-flavoured help. Try man clear or man history.
- - /secret/backdoor.log: Contains the two-part "sysop handshake" ("signal maintains memory" + "ladder points to echoes"). Cross-reference with /users/root/ghost_process.log.
+ - /secret/backdoor.log: Contains the sysop handshake (entropy + LADDER points to echoes). Cross-reference with /users/root/ghost_process.log.
  - /notes/dev_memo.txt: Developer TODOs confirm the whisper mechanic and preservation of solution.txt.
  - sudo / rm attempts: Typing sudo anything or rm -rf /mnt/oldnet results in narrative responses about sealed permissions.
- - /echoes/ping.sequence: A timeline matching significant archive events to your current session. Demonstrates the "ladder" motif—each event is another rung of awareness.
- - Puzzles: /puzzles/puzzle_intro.txt and /puzzles/puzzle_signal.txt give answers for submit ladder and submit signal, unlocking extra hints via progress and hint commands.
+ - /echoes/ping.sequence: A timeline matching significant archive events to your current session. Demonstrates the "LADDER" motif—each event is another rung of awareness.
+ - Puzzles: /puzzles/puzzle_intro.txt and /puzzles/puzzle_signal.txt give answers that unlock extra hints via progress and hint commands.
  
  FULL WALKTHROUGH
  1. Boot -> terminal prompt appears as /mnt/oldnet$.
@@ -94,7 +94,7 @@ Good luck.`,
     - cat workbench/fragment_03.part
  5. Optional: read supporting lore (users/alice/..., sites/reddit/..., notes/hash_map.txt, secret/hint_note.txt).
  6. Assemble fragments as shown above.
- 7. grep -R ladder /mnt/oldnet -> leads to secret/backdoor.log and echoes/whisper.log for deeper narrative.
+ 7. grep -R LADDER /mnt/oldnet -> leads to secret/backdoor.log and echoes/whisper.log for deeper narrative.
  8. After verifying fragments, run
     cat /mnt/oldnet/truth/manifesto_fragment.txt to finish the main story.
  9. Explore remaining easter eggs: try history, man, clear thrice, inspect /echoes/, and run the ending commands.
@@ -126,9 +126,10 @@ Use the README_HOWTO.txt to guide players.`,
         
         'guestbook.log': `[1999-11-02 21:12] anonymous: nice page!
 [1999-11-02 21:18] lucy: thanks :)
-[1999-11-02 22:03] echo: remember the ladder
+[1999-11-02 22:03] echo: remember the LADDER
 [1999-11-02 22:11] guest42: see you in /secret
-[1999-11-03 01:01] lucy: if anyone finds fragment_01, place in /workbench`,
+[1999-11-03 01:01] lucy: if anyone finds fragment_01, place in /workbench
+[1999-11-03 01:05] echo: LADDER is the key word`,
         
         'secret': {
           'msg.txt': `fragment_01:
@@ -148,8 +149,8 @@ Use the README_HOWTO.txt to guide players.`,
 ║   [ACCESS RESTRICTED]          ║
 ╚═══════════════════════════════╝`,
 
-          'ladder.map': `ASCII ROUTE
-start -> guestbook clue
+          'ladder.map': `ASCII ROUTE - LADDER PATH
+start -> guestbook clue (LADDER)
 down -> secret/msg.txt
 right -> echoes/
 up -> whisper.log
@@ -171,13 +172,14 @@ reply3: remember to check mod_logs/mod_action_2006.log`,
 2006-06-12T13:59:02Z  auto-moderator: replaced with "[removed]"
 2006-06-12T14:01:33Z  admin: note "archive sanitized - checksum mismatch detected"`,
 
-          'shadow_addendum.log': `2006-06-12T14:05:02Z  ghost_process: injected ladder reference into guestbook.
+          'shadow_addendum.log': `2006-06-12T14:05:02Z  ghost_process: injected LADDER reference into guestbook.
 2006-06-12T14:05:08Z  moderator: unable to locate source directory "echoes" (permission denied).`
         },
         
         'deleted': {
-          'ai_comment.log': `[bot-4321] 2006-06-12T13:49:59Z: "Indices complete. Reporting entropy low. Recommend prune."
+          'ai_comment.log': `[bot-4321] 2006-06-12T13:49:59Z: "Indices complete. Reporting ENTROPY low. Recommend prune."
 [bot-4321] 2006-06-12T13:50:03Z: "Sanitation applied to thread."
+[bot-4321] 2006-06-12T13:50:05Z: "Signal maintains memory. ENTROPY is the answer."
 (note: admin override at 2006-06-12T13:58)`,
           
           'fragment_02.txt': `fragment_02:
@@ -188,7 +190,7 @@ reply3: remember to check mod_logs/mod_action_2006.log`,
           'bot_backups.md': `Reconstructed commands from moderator bot:
 - clear  # triggered thrice => leak whisper()
 - history | tail -4  # record of human overrides
-- grep -R "ladder" /mnt/oldnet  # flagged but never resolved`
+- grep -R "LADDER" /mnt/oldnet  # flagged but never resolved`
         }
       },
       
@@ -206,12 +208,12 @@ Checksum: [corrupted]`
     
     'echoes': {
       'whisper.log': `[echo-replay]
-Heard you clear the static. The ladder's next rung lives in /secret/backdoor.log.
+Heard you clear the static. The LADDER's next rung lives in /secret/backdoor.log.
 Cross-check with /users/root/ghost_process.log for authentication phrase.
 If you align the manifesto fragments with the checksum, the system hums again.`,
 
       'ping.sequence': `Timestamp : Signal
-1999-11-02 : guestbook ladder inserted
+1999-11-02 : guestbook LADDER inserted
 2006-06-12 : moderator bot noticed anomaly
 2012-02-14 : fragment_03 rescued
 2013-07-02 : manifesto fragment sealed
@@ -221,16 +223,17 @@ If you align the manifesto fragments with the checksum, the system hums again.`,
     'puzzles': {
       'puzzle_intro.txt': `PUZZLE 01 - THE LADDER WORD
 Step 1: cat sites/geocities/guestbook.log
-Step 2: spot the repeated clue word whispered by "echo"
+Step 2: spot the repeated clue word whispered by "echo" - look for LADDER
 Step 3: submit <that word>
 Reward: the hint command becomes friendlier, and progress updates mention hidden directories.
 
 Need help? The answer is lowercase.`,
 
-      'puzzle_signal.txt': `PUZZLE 02 - SIGNAL PHRASE
+      'puzzle_signal.txt': `PUZZLE 02 - SIGNAL MAINTAINS MEMORY
 1. Read users/alice/mail/inbox3.eml and secret/backdoor.log
-2. The shared phrase is the passcode.
-3. submit <two-word phrase>, include the space (e.g., "signal maintains")
+2. Look for what the signal maintains - the answer is a single word.
+3. Check the bot logs for the key term.
+4. submit <one word answer>
 Reward: unlocks advanced hints pointing to the manifesto.`
     },
 
@@ -272,7 +275,7 @@ Date: Fri, 31 Aug 2007 00:13:00 +0000
 
 Echo me by running: history | tail -3
 Then look for /mnt/oldnet/echoes/whisper.log
-Phrase to remember: "signal maintains memory"`
+The signal maintains memory. The answer is: ENTROPY`
         },
         
         'downloads': {
@@ -299,9 +302,9 @@ echo,1999-11-05,unknown`,
 - note: DO NOT TOUCH secure/echelon_archive.tar.gz.sha256`,
 
         'ghost_process.log': `[root override memo]
-Phrase: signal maintains memory
+The signal maintains memory through ENTROPY.
 If archivist recovers manifesto, reveal checksum file in /workbench.
-Reminder: ladder clue hidden in geocities secret.`
+Reminder: LADDER clue hidden in geocities secret.`
       }
     },
     
@@ -309,8 +312,8 @@ Reminder: ladder clue hidden in geocities secret.`
       'fragment_03.part': `fragment_03:
 "in the gaps humans wrote the code to remember."`,
       
-      'timeline_fragments.txt': `1999-11-02T22:03 lucy: guestbook entry "remember the ladder"
-2006-06-12T13:49 bot-4321: "Indices complete. Reporting entropy low."
+      'timeline_fragments.txt': `1999-11-02T22:03 lucy: guestbook entry "remember the LADDER"
+2006-06-12T13:49 bot-4321: "Indices complete. Reporting ENTROPY low."
 2006-06-12T13:58 admin: "archive sanitized - checksum mismatch detected"
 2007-08-30 alice: "I hid a clue in the photo hash"
 2011-03-05 root: "moved suspect archives to /secure/"
@@ -320,7 +323,7 @@ Reminder: ladder clue hidden in geocities secret.`
 
       'manifesto_checksum.txt': `checksum hint:
 sha256(manifesto_fragment.txt) ≈ 2d2f... (truncated)
-If your assembled fragments read differently, re-run the ladder steps.`
+If your assembled fragments read differently, re-run the LADDER steps.`
     },
     
     'secure': {
@@ -344,9 +347,10 @@ An empty checksum (d41d8cd98f00b204e9800998ecf8427e) means deliberate removal.
 Look for text fragments outside /secure/ that mirror missing titles.`,
 
       'backdoor.log': `[sysop handshake]
-phrase_one = signal maintains memory
-phrase_two = ladder points to echoes
-If both phrases spoken, grant archivist read-only access to truth.`
+phrase_one = signal maintains memory (answer: ENTROPY)
+phrase_two = LADDER points to echoes
+If both phrases spoken, grant archivist read-only access to truth.
+[LOG] The answer is entropy. The signal maintains memory through entropy.`
     },
     
     'truth': {

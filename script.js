@@ -257,7 +257,7 @@ function executeCommand(input) {
     
     if (input.startsWith('sudo')) {
         term.writeln('sudo: permission denied (OldNet is sealed read-only)');
-        term.writeln('ghost_hint: elevated access died with the admins. try searching for "ladder".');
+        term.writeln('ghost_hint: elevated access died with the admins. try searching for "LADDER".');
         printPrompt();
         return;
     }
@@ -535,7 +535,7 @@ function cmdClear() {
     term.clear();
     clearCount += 1;
     if (clearCount === 3) {
-        term.writeln('\x1b[35mA faint voice: "echoes hide where history forgets." Try history or grep -R ladder.\x1b[0m');
+        term.writeln('\x1b[35mA faint voice: "echoes hide where history forgets." Try history or grep -R LADDER.\x1b[0m');
         clearCount = 0;
     }
     printPrompt();
@@ -556,7 +556,7 @@ function cmdHelp() {
     term.writeln('  man [command]      - Read archived manual entries');
     term.writeln('  hint               - Context-aware hint based on progress');
     term.writeln('  progress           - Show what you have solved so far');
-    term.writeln('  submit [answer]    - Solve puzzle slips (ladder, signal maintains memory)');
+    term.writeln('  submit [answer]    - Solve puzzle slips ');
     term.writeln('  unlock_manifesto [keyword] - Provide the unlock keyword to open the vault');
     term.writeln('  pwd                - Print working directory');
     term.writeln('  clear              - Clear terminal');
@@ -686,7 +686,7 @@ const manualEntries = {
     man: 'man - show manual entries. Use man [command].',
     hint: 'hint - receive the next recommended action. Becomes more explicit as you solve puzzles.',
     progress: 'progress - display puzzle answers found, fragments located, and manifest status.',
-    submit: 'submit - provide answers gathered from /puzzles/*. Example: submit ladder',
+    submit: 'submit - provide answers gathered from /puzzles/*',
     unlock_manifesto: 'unlock_manifesto - provide the unlock keyword (hint: project name) to open the truth vault.',
     clear: 'clear - wipe the terminal. Do it thrice to trigger a whisper.',
     pwd: 'pwd - show current working directory.'
@@ -712,13 +712,13 @@ function cmdMan(args) {
 
 function cmdHint() {
     if (!puzzleState.tokens.has('ladder')) {
-        term.writeln('Hint: Start with /puzzles/puzzle_intro.txt. The answer is the repeated word in the GeoCities guestbook. Submit it with submit ladder.');
+        term.writeln('Hint: Start with /puzzles/puzzle_intro.txt. The answer is the repeated word in the GeoCities guestbook.');
         printPrompt();
         return;
     }
 
-    if (!puzzleState.tokens.has('signal maintains memory')) {
-        term.writeln('Hint: Check /users/alice/mail/inbox3.eml and /secret/backdoor.log. Submit the shared two-word phrase with submit "signal maintains memory".');
+    if (!puzzleState.tokens.has('entropy')) {
+        term.writeln('Hint: Check /users/alice/mail/inbox3.eml and /secret/backdoor.log. Look for the word that describes what the signal maintains. The answer is entropy.');
         printPrompt();
         return;
     }
@@ -743,7 +743,7 @@ function cmdProgress() {
     term.writeln('--- Progress Report ---');
     term.writeln(`Puzzles solved: ${puzzleState.tokens.size}/2`);
     if (puzzleState.tokens.size < 2) {
-        const remaining = ['ladder', 'signal maintains memory']
+        const remaining = ['ladder', 'entropy']
             .filter(ans => !puzzleState.tokens.has(ans))
             .join(', ');
         term.writeln(`  Remaining puzzle answers: ${remaining}`);
@@ -758,13 +758,13 @@ function cmdProgress() {
 
 function cmdSubmit(args) {
     if (args.length === 0) {
-        term.writeln('submit: please provide an answer. Example: submit ladder');
+        term.writeln('submit: please provide an answer');
         printPrompt();
         return;
     }
 
     const answer = args.join(' ').toLowerCase();
-    const validAnswers = ['ladder', 'signal maintains memory'];
+    const validAnswers = ['ladder', 'entropy'];
     if (!validAnswers.includes(answer)) {
         term.writeln('submit: answer not recognized. Check /puzzles/ for clues.');
         printPrompt();
@@ -781,8 +781,9 @@ function cmdSubmit(args) {
     if (answer === 'ladder') {
         term.writeln('\x1b[32mPuzzle unlocked: Ladder clue registered. Hint command will now reveal secret directories.\x1b[0m');
         term.writeln('Next step: explore /puzzles/puzzle_signal.txt.');
-    } else if (answer === 'signal maintains memory') {
-        term.writeln('\x1b[32mPuzzle unlocked: Signal phrase authenticated. Hint command now leads directly to the manifesto.\x1b[0m');
+    } else if (answer === 'entropy') {
+        term.writeln('\x1b[32mPuzzle unlocked: Entropy authenticated. The signal maintains memory - entropy is the answer.\x1b[0m');
+        term.writeln('\x1b[33m[LOG] Entropy is the answer. The signal maintains memory through entropy.\x1b[0m');
     }
     printPrompt();
 }
