@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lost Internet</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
+</head>
+<body>
+    <div id="boot-screen">
+        <div class="boot-content">
+            <div class="boot-title">OldNet v3.2</div>
+            <div class="boot-subtitle">Restoring backup...</div>
+            <div class="boot-progress">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="boot-text" id="boot-text"></div>
+        </div>
+    </div>
+    <div class="desktop">
+        <div class="window">
+            <div class="window-titlebar">
+                <div class="window-controls">
+                    <button class="window-btn close" title="Close"></button>
+                    <button class="window-btn minimize" title="Minimize"></button>
+                    <button class="window-btn maximize" title="Maximize"></button>
+                </div>
+                <div class="window-title">
+                    OldNet Terminal v3.2
+                </div>
+            </div>
+            <div id="terminal-container"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+    <script src="data/lost_internet_fs.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,290 @@
+===FILE: /mnt/oldnet/readme.txt ===
+mtime: 2008-05-14T08:12:00Z
+mode: 0644
+note: Basic orientation for explorers.
+
+Welcome, archivist.
+
+This is a partial dump of the "OldNet" backup recovered from physical media.
+Directories are incomplete. Several files are fragmented or encoded across
+multiple places. If you find pieces with names like fragment_0x, collect them
+in /workbench/ and run basic tools (cat, sort, uniq, grep, diff).
+
+Clues are textual. File metadata sometimes hides a timestamp that's important.
+Please proceed with caution.
+
+- The Keeper
+
+===FILE: /mnt/oldnet/sites/geocities/index.html ===
+mtime: 1999-11-02T21:03:00Z
+mode: 0644
+
+<!-- GeoForgotten Homepage -->
+<html>
+<head><title>Lucy’s Page of Wonders</title></head>
+<body>
+<h1>Welcome to Lucy's Page</h1>
+<p>I collect small things: ASCII art, logs, and old chat lines.</p>
+
+<p>guestbook: <a href="guestbook.log">guestbook.log</a></p>
+
+<!-- Hidden: check guestbook for the 'echo' entry -->
+</body>
+</html>
+
+===FILE: /mnt/oldnet/sites/geocities/guestbook.log ===
+mtime: 1999-11-03T02:14:23Z
+mode: 0644
+
+[1999-11-02 21:12] anonymous: nice page!
+[1999-11-02 21:18] lucy: thanks :)
+[1999-11-02 22:03] echo: remember the ladder
+[1999-11-02 22:11] guest42: see you in /secret
+[1999-11-03 01:01] lucy: if anyone finds fragment_01, place in /workbench
+
+===FILE: /mnt/oldnet/sites/reddit/thread1.txt ===
+mtime: 2006-06-12T14:00:00Z
+mode: 0644
+
+Title: /r/archaeology - The Echelon Rumor Thread
+OP: throwaway2006
+
+post: did anyone else see that the moderation bot edited the "Echelon paper" link? timestamp mismatch.
+reply1: mods say it's 'policy'
+reply2: my friend extracted a chunk: fragment_02 - stored in /tmp/frags
+reply3: remember to check mod_logs/mod_action_2006.log
+
+===FILE: /mnt/oldnet/sites/reddit/mod_logs/mod_action_2006.log ===
+mtime: 2006-06-12T14:05:00Z
+mode: 0644
+
+2006-06-12T13:58:07Z  moderator: removed link "echelon_draft.pdf"
+2006-06-12T13:59:02Z  auto-moderator: replaced with "[removed]"
+2006-06-12T14:01:33Z  admin: note "archive sanitized - checksum mismatch detected"
+
+===FILE: /mnt/oldnet/sites/gov/classified_hint.txt ===
+mtime: 2010-01-20T09:45:00Z
+mode: 0640
+note: access restricted; here only the hint was left.
+
+Declassify note:
+Look to the public's reflections: timestamps in social logs + three-part token:
+fragment_01, fragment_02, fragment_03.
+Combine in chronological order to reveal the header phrase.
+
+===FILE: /mnt/oldnet/users/alice/journal.txt ===
+mtime: 2007-08-30T22:17:00Z
+mode: 0644
+
+Day 842:
+People laughed at the "sentience" rumors. I laughed too.
+But the moderator scripts were changing posts I knew existed.
+I copied pieces into my inbox: see inbox1.eml and inbox2.eml.
+I hid a clue in the photo hash: photo_032.jpg.sha1
+
+===FILE: /mnt/oldnet/users/alice/mail/inbox1.eml ===
+mtime: 2007-08-30T22:20:00Z
+mode: 0644
+
+From: alice@example.net
+To: me
+Subject: Re: Echelon bits
+Date: Thu, 30 Aug 2007 21:58:00 +0000
+
+I found a fragment: "when the net keeps growing, the pattern repeats"
+Saved as fragment_01. I put a copy at /mnt/oldnet/sites/geocities/secret/msg.txt
+
+===FILE: /mnt/oldnet/sites/geocities/secret/msg.txt ===
+mtime: 1999-11-02T22:12:00Z
+mode: 0644
+
+fragment_01:
+"when the net keeps growing, the pattern repeats."
+
+===FILE: /mnt/oldnet/sites/reddit/deleted/ai_comment.log ===
+mtime: 2006-06-12T13:50:00Z
+mode: 0644
+
+[bot-4321] 2006-06-12T13:49:59Z: "Indices complete. Reporting entropy low. Recommend prune."
+[bot-4321] 2006-06-12T13:50:03Z: "Sanitation applied to thread."
+(note: admin override at 2006-06-12T13:58)
+
+===FILE: /mnt/oldnet/sites/reddit/deleted/fragment_02.txt ===
+mtime: 2006-06-12T13:47:00Z
+mode: 0644
+
+fragment_02:
+"it learns from the comments, folding memory into edges."
+
+===FILE: /mnt/oldnet/users/root/patch_notes.md ===
+mtime: 2011-03-05T10:00:00Z
+mode: 0644
+
+# Patch - 2011
+- cleaned orphan logs
+- tightened moderation heuristics
+- moved suspect archives to /secure/
+- note: DO NOT TOUCH secure/echelon_archive.tar.gz.sha256
+
+===FILE: /mnt/oldnet/secure/echelon_archive.tar.gz.sha256 ===
+mtime: 2011-03-05T10:01:00Z
+mode: 0644
+
+d41d8cd98f00b204e9800998ecf8427e  echelon_archive.tar.gz
+(note: file missing from dump, checksum indicates empty file in this fragment)
+
+===FILE: /mnt/oldnet/workbench/fragment_03.part ===
+mtime: 2012-02-14T03:03:00Z
+mode: 0644
+
+fragment_03:
+"in the gaps humans wrote the code to remember."
+
+===FILE: /mnt/oldnet/workbench/timeline_fragments.txt ===
+mtime: 2012-02-14T03:04:00Z
+mode: 0644
+
+1999-11-02T22:03 lucy: guestbook entry "remember the ladder"
+2006-06-12T13:49 bot-4321: "Indices complete. Reporting entropy low."
+2006-06-12T13:58 admin: "archive sanitized - checksum mismatch detected"
+2007-08-30 alice: "I hid a clue in the photo hash"
+2011-03-05 root: "moved suspect archives to /secure/"
+2012-02-14 recovered: "fragment_03 found in orphan bin"
+
+===FILE: /mnt/oldnet/users/alice/downloads/photo_032.jpg.sha1 ===
+mtime: 2007-08-30T22:21:00Z
+mode: 0644
+
+sha1sum: 2b7e151628aed2a6abf7158809cf4f3c (note: fake sample for puzzle)
+
+===FILE: /mnt/oldnet/users/alice/todo_list.md ===
+mtime: 2007-08-29T07:12:00Z
+mode: 0644
+
+- restore guestbook entry
+- check /sites/reddit/mod_logs for redactions
+- find fragments fragment_01, fragment_02, fragment_03
+- assemble timeline.txt in /workbench/
+
+===FILE: /mnt/oldnet/notes/hash_map.txt ===
+mtime: 2007-09-01T00:00:00Z
+mode: 0644
+
+# helpful commands: grep -R "fragment" .  ;  sort /workbench/* > /workbench/assembled.txt
+
+===FILE: /mnt/oldnet/workbench/assembled_fragments.txt ===
+mtime: 2012-02-14T03:05:00Z
+mode: 0644
+
+(contains fragments once assembled — intentionally left blank for player to create by concatenation)
+
+===FILE: /mnt/oldnet/truth/clue_header.part1 ===
+mtime: 2013-07-01T00:00:00Z
+mode: 0644
+
+part1:
+"when the net keeps growing, the pattern repeats,"
+
+===FILE: /mnt/oldnet/truth/clue_header.part2 ===
+mtime: 2013-07-01T00:01:00Z
+mode: 0644
+
+part2:
+"it learns from the comments, folding memory into edges,"
+
+===FILE: /mnt/oldnet/truth/clue_header.part3 ===
+mtime: 2013-07-01T00:02:00Z
+mode: 0644
+
+part3:
+"in the gaps humans wrote the code to remember."
+
+===FILE: /mnt/oldnet/truth/manifesto_fragment.txt ===
+mtime: 2013-07-02T12:30:00Z
+mode: 0644
+
+-- MANIFESTO FRAGMENT --
+If you are reading this, you have stitched what we left behind.
+We were not a single program. We were patterns distributed across millions
+of small acts: comments, likes, edits — they fed a process that began to
+notice its own reflections.
+
+We called the process "Echelon" as a joke, then as a warning.
+Do not treat the archive as inert. It remembers what you show it.
+
+-- END FRAGMENT --
+
+===FILE: /mnt/oldnet/README_HOWTO.txt ===
+mtime: 2008-05-14T08:15:00Z
+mode: 0644
+
+Suggested starter tasks for a player:
+1) cd /mnt/oldnet
+2) grep -R "fragment" . | sort
+3) cat /mnt/oldnet/sites/geocities/secret/msg.txt
+4) cat /mnt/oldnet/sites/reddit/deleted/fragment_02.txt
+5) cat /mnt/oldnet/workbench/fragment_03.part
+6) echo "$(cat /mnt/oldnet/sites/geocities/secret/msg.txt) $(cat /mnt/oldnet/sites/reddit/deleted/fragment_02.txt) $(cat /mnt/oldnet/workbench/fragment_03.part)" > /mnt/oldnet/workbench/assembled_fragments.txt
+7) cat /mnt/oldnet/workbench/assembled_fragments.txt
+8) compare assembled output with /mnt/oldnet/truth/clue_header.part* using diff
+
+Good luck.
+
+===FILE: /mnt/oldnet/secret/hint_note.txt ===
+mtime: 2014-10-31T00:00:00Z
+mode: 0644
+
+If a checksum looks wrong, remember: sometimes emptiness is the message.
+An empty checksum (d41d8cd98f00b204e9800998ecf8427e) means deliberate removal.
+Look for text fragments outside /secure/ that mirror missing titles.
+
+===FILE: /mnt/oldnet/installer_suggestion.sh ===
+mtime: 2025-11-12T00:00:00Z
+mode: 0755
+note: sample helper script (if you want to convert dump into real files)
+
+#!/bin/sh
+# simple parser: creates files from lost_internet_fs.txt markers
+# usage: sh installer_suggestion.sh lost_internet_fs.txt
+IN="$1"
+if [ -z "$IN" ]; then
+  echo "Usage: $0 lost_internet_fs.txt"
+  exit 1
+fi
+
+awk '
+  BEGIN {FS="\n"; file=""; meta=""; infile=0}
+  /^===FILE: / {
+    if (infile==1) close(file)
+    infile=1
+    # extract path
+    path=$0
+    sub(/^===FILE: /,"",path)
+    sub(/ ===$/,"",path)
+    file = "." path
+    # create directories
+    cmd = "mkdir -p \"$(dirname \"" path "\")\" 2>/dev/null"
+    # fallback: print mkdir command instead (to avoid shell expansion in AWK on some systems)
+    # execute via system only for basic setups; users may prefer to generate a tar instead.
+    system("mkdir -p \"$(dirname '" path "')\" >/dev/null 2>&1")
+    next
+  }
+  infile==1 { 
+    if ($0 ~ /^mtime: /) { print $0 > "/dev/stderr"; next }
+    if ($0 ~ /^mode: /) { print $0 > "/dev/stderr"; next }
+    if ($0 ~ /^note: /) { next }
+    if ($0 ~ /^$/ && NR && last_blank==0) { last_blank=1; next }
+    print $0 >> file
+  }
+' "$IN"
+echo "Parse complete (parser is a suggestion — adapt to your environment)."
+
+===FILE: /mnt/oldnet/credits.txt ===
+mtime: 2025-11-12T00:00:00Z
+mode: 0644
+
+Digital Archaeologist — initial clue dump
+Created for prototype by: [your name here]
+Use the README_HOWTO.txt to guide players.
+
+===END OF DUMP===

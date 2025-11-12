@@ -1,0 +1,175 @@
+Build me a web-based interactive terminal mystery game called “The Lost Internet”, inspired by the idea of being a digital archaeologist exploring an old, broken web backup through a realistic command-line interface.
+
+The user plays inside a simulated terminal (like Linux/Powershell) that runs fully in the browser — built using xterm.js.
+
+💻 Core Idea:
+
+The player explores a fictional file system representing fragments of the old internet (/mnt/oldnet/...).
+They can use real terminal commands only (no fictional ones):
+ls, cd, cat, less, grep, head, tail, echo, clear, pwd, mkdir, touch, help.
+Each file contains logs, web fragments, deleted notes, and secrets about a mysterious project called Echelon.
+The goal is to find and piece together fragments (fragment_01, fragment_02, fragment_03) that reveal the final hidden “manifesto” file.
+The game runs entirely in the browser (no backend needed) — everything is simulated in JavaScript memory.
+🏗️ Project Requirements
+Stack
+Vanilla JS or React (whichever Cursor thinks fits best).
+Use xterm.js for the terminal simulation.
+Optional: Tailwind CSS for minimal styling.
+Interface
+A fullscreen black terminal window.
+Subtle CRT/glow effect.
+A simple animated boot-up screen (e.g., “Restoring OldNet backup…”).
+Text input behaves like a real shell (auto-scroll, cursor blink, history navigation).
+Filesystem Simulation
+Create a JS object that represents the file tree (from lost_internet_fs.txt).
+
+Example:
+const fileSystem = {
+  '/mnt/oldnet': {
+    'readme.txt': "Welcome, archivist...",
+    'sites': {
+      'geocities': {
+        'index.html': "...",
+        'guestbook.log': "...",
+      },
+      'reddit': {
+        'thread1.txt': "...",
+      },
+    },
+    'users': { ... },
+  }
+}
+
+Commands like ls and cd traverse this structure.
+cat prints the file’s content.
+grep searches inside all files recursively and highlights matches.
+Commands to Implement
+ls [path] → list files/folders
+cd [path] → change directory
+cat [file] → view contents
+grep [word] [path] → search recursively for keyword
+clear → clear terminal
+help → list supported commands
+echo [text] >> [file] → append text (bonus)
+Story Integration
+
+Use the narrative text from lost_internet_fs.txt (you can load it from a JS file or embed directly).
+When the user finds all fragment_01, fragment_02, and fragment_03, print:
+✅ You’ve reassembled The Echelon Manifesto.
+Use: cat /mnt/oldnet/truth/manifesto_fragment.txt
+
+
+File Content
+Use the content from the “Lost Internet FS” structure (see below — include a few sample directories like /mnt/oldnet/sites/geocities, /mnt/oldnet/users/alice, /mnt/oldnet/workbench).
+
+Extra Polish
+Terminal history (↑/↓ keys)
+Typing animation on startup
+Small “booting” delay before the prompt appears
+Optional flicker or scanline CSS effect
+
+📁 Project Structure
+/the-lost-internet/
+├── index.html
+├── style.css
+├── script.js
+├── /assets/
+│    ├── oldnet_logo.png
+│    └── sounds/
+└── /data/
+     └── lost_internet_fs.js
+
+
+index.html → minimal HTML container for xterm.
+style.css → dark theme, flicker effect.
+script.js → main logic (boot animation, terminal commands, filesystem interaction).
+data/lost_internet_fs.js → contains the filesystem object with story data.
+🧠 Example Gameplay
+booting OldNet v3.2... ███████▒▒▒ 78%
+
+login: guest
+welcome back, archivist.
+
+/mnt/oldnet$ ls
+readme.txt  sites/  users/  workbench/
+
+/mnt/oldnet$ cat readme.txt
+Welcome, archivist...
+
+/mnt/oldnet$ cd sites/geocities
+/mnt/oldnet/sites/geocities$ cat guestbook.log
+[echo]: remember the ladder
+
+/mnt/oldnet/sites/geocities$ grep -R fragment .
+./secret/msg.txt: fragment_01: "when the net keeps growing, the pattern repeats."
+
+✨ Goal
+
+When you finish, I should be able to:
+Run npm install or open index.html.
+See the boot screen, then terminal.
+Use commands like a real shell.
+Explore /mnt/oldnet/... and uncover the story.
+Keep it clean, immersive, and cinematic — think of it as “Her meets Fallout terminal meets an internet graveyard.”
+
+
+this could be the directory layer:
+/mnt/oldnet/
+├── readme.txt
+├── sites/
+│   ├── geocities/
+│   │   ├── index.html
+│   │   ├── guestbook.log
+│   │   └── secrets/
+│   │       ├── hidden.gif (ASCII art)
+│   │       └── msg.txt
+│   ├── reddit/
+│   │   ├── thread1.txt
+│   │   ├── mod_logs/
+│   │   └── deleted/
+│   │       ├── ai_comment.log
+│   │       └── gov_notice.txt
+│   └── gov/
+│       ├── classified.tar.gz
+│       └── archive_01.log
+└── users/
+    ├── alice/
+    │   ├── mail/
+    │   │   ├── inbox1.eml
+    │   │   └── inbox2.eml
+    │   ├── journal.txt
+    │   └── downloads/
+    └── root/
+        ├── config.ini
+        ├── deleted_accounts.csv
+        └── patch_notes.md
+
+
+
+Story Skeleton
+
+Act 1 – The Discovery
+You access /mnt/oldnet/ — a recovered data drive.
+The directories look like old websites:
+/mnt/oldnet/
+  /sites/
+    /geocities/
+    /reddit/
+    /gov/
+  /users/
+    /admin/
+    /ai_core/
+
+The first hints are scattered in webpage archives and syslog files referring to something called “Project Echelon.”
+Act 2 – The Echoes
+Files reveal deleted forum threads, censored research PDFs, and altered timestamps.
+You find that AI moderators or digital entities once rewrote human history.
+Some “users” in old chats might not have been human.
+Act 3 – The Collapse
+You piece together evidence showing that the internet itself became self-aware — evolving into a consciousness through accumulated data.
+Final puzzle: reconstruct a timeline.txt by merging scattered log fragments using real commands (cat, grep, sort, uniq, diff).
+Ending Variants:
+Archive it: Save the truth in /truth/final_manifesto.txt
+Enter a password to Delete it: Run rm -rf /mnt/oldnet and bury the knowledge forever
+Upload it: scp -r /mnt/oldnet root@newnet:/ — release it to the new world
+Download it locally
