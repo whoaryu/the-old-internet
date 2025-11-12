@@ -10,7 +10,7 @@ const term = new Terminal({
     fontSize: 15,
     fontFamily: "'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace",
     fontWeight: 400,
-    letterSpacing: 0.3,
+    letterSpacing: 0,
     theme: {
         background: '#0d1117',
         foreground: '#c9d1d9',
@@ -103,40 +103,41 @@ function initializeTerminal() {
         }
     }
     
-    // Welcome message with ASCII art (properly formatted - all lines left-aligned)
-    const asciiBanner = String.raw`
-    __                          
-_      _____  / /________  ____ ___  ___   
-| | /| / / _ \/ / ___/ __ \/ __ \`__ \/ _ \  
-| |/ |/ /  __/ / /__/ /_/ / / / / / /  __/  
-|__/|__/\___/_/\___/\____/_/ /_/ /_/\___/ __
-___  _  ______  / /___  ________  _____/ /
-/ _ \| |/_/ __ \/ / __ \/ ___/ _ \/ ___/ / 
-/  __/>  </ /_/ / / /_/ / /  /  __/ /  /_/  
-\___/_/|_/ .___/_/\____/_/   \___/_/  (_)   
-/_/                                  
-`;
+    // Welcome message with ASCII art rendered line-by-line to preserve spacing
+    const asciiBannerLines = [
+        '     __                          ',
+        '_      _____  / /________  ____ ___  ___   ',
+        " | | /| / / _ \\/ / ___/ __ \\/ __ `__ \\/ _ \\",
+        ' | |/ |/ /  __/ / /__/ /_/ / / / / / /  __/  ',
+        ' |__/|__/\\___/_/\\___/\\____/_/ /_/ /_/\\___/ __',
+        ' ___  _  ______  / /___  ________  _____/ /',
+        ' / _ \\| |/_/ __ \\/ / __ \\/ ___/ _ \\/ ___/ / ',
+        ' /  __/>  </ /_/ / / /_/ / /  /  __/ /  /_/  ',
+        ' \\___/_/|_/ .___/_/\\____/_/   \\___/_/  (_)   ',
+        '        /_/                                  '
+    ];
 
-const asciiArt = String.raw`
-╔═══════════════════════════════════════════╗
-║   OLDNET v3.2 - Backup Recovery System    ║
-╚═══════════════════════════════════════════╝
+    const asciiArtLines = [
+        '╔═══════════════════════════════════════════╗',
+        '║   OLDNET v3.2 - Backup Recovery System    ║',
+        '╚═══════════════════════════════════════════╝',
+        '',
+        '     ██╗      ██████╗ ██████╗ ███████╗',
+        '     ██║     ██╔═══██╗██╔══██╗██╔════╝',
+        '     ██║     ██║   ██║██║  ██║█████╗',
+        '     ██║     ██║   ██║██║  ██║██╔══╝',
+        '     ███████╗╚██████╔╝██████╔╝███████╗',
+        '     ╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝',
+        '',
+        'login: guest',
+        'welcome back, archivist.',
+        ''
+    ];
 
-     ██╗      ██████╗ ██████╗ ███████╗
-     ██║     ██╔═══██╗██╔══██╗██╔════╝
-     ██║     ██║   ██║██║  ██║█████╗
-     ██║     ██║   ██║██║  ██║██╔══╝
-     ███████╗╚██████╔╝██████╔╝███████╗
-     ╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
-
-login: guest
-welcome back, archivist.
-
-`;
-    // Write without extra formatting to preserve exact spacing
     term.write('\x1b[32m');
-    term.writeln(asciiBanner);
-    term.writeln(asciiArt);
+    asciiBannerLines.forEach(line => term.writeln(line));
+    term.writeln('');
+    asciiArtLines.forEach(line => term.writeln(line));
     term.write('\x1b[0m');
     
     printPrompt();
@@ -632,25 +633,22 @@ function checkForFragments(path, content) {
 function checkManifestoComplete() {
     if (foundFragments.size === 3) {
         setTimeout(() => {
-            const successArt = `╔═══════════════════════════════════════╗
-║  ✅ FRAGMENTS REASSEMBLED ✅          ║
-╠═══════════════════════════════════════╣
-║                                       ║
-║   You've found all three fragments!   ║
-║   The Echelon Manifesto is ready.    ║
-║                                       ║
-║   Use: cat /mnt/oldnet/truth/         ║
-║        manifesto_fragment.txt         ║
-║                                       ║
-╚═══════════════════════════════════════╝
-`;
+            const successArtLines = [
+                '╔═══════════════════════════════════════╗',
+                '║  ✅ FRAGMENTS REASSEMBLED ✅          ║',
+                '╠═══════════════════════════════════════╣',
+                '║                                       ║',
+                "║   You've found all three fragments!   ║",
+                '║   The Echelon Manifesto is ready.    ║',
+                '║                                       ║',
+                '║   Use: cat /mnt/oldnet/truth/         ║',
+                '║        manifesto_fragment.txt         ║',
+                '║                                       ║',
+                '╚═══════════════════════════════════════╝'
+            ];
             term.writeln('');
-            // Write line by line to preserve alignment
-            const lines = successArt.split('\n');
             term.write('\x1b[32m');
-            lines.forEach(line => {
-                term.writeln(line);
-            });
+            successArtLines.forEach(line => term.writeln(line));
             term.write('\x1b[0m');
             printPrompt();
         }, 500);
