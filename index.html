@@ -34,6 +34,33 @@
             <div id="terminal-container"></div>
         </div>
     </div>
+    <div id="ending-modal" class="ending-modal" aria-hidden="true">
+        <div class="ending-modal__backdrop" data-ending-dismiss></div>
+        <div class="ending-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ending-modal-title" tabindex="-1">
+            <button class="ending-modal__close" id="ending-modal-close" title="Close selector" data-ending-dismiss>&times;</button>
+            <h2 id="ending-modal-title">Choose the Archive&rsquo;s Fate</h2>
+            <p class="ending-modal__description">
+                The manifesto is yours. Pick an outcome to run the command instantly, or keep experimenting from the terminal.
+            </p>
+            <div class="ending-modal__actions">
+                <button class="ending-modal__button" data-ending-command="archive_truth">
+                    Archive Truth
+                    <span class="ending-modal__hint">Seal it for future archivists</span>
+                </button>
+                <button class="ending-modal__button" data-ending-command="purge_oldnet">
+                    Purge OldNet
+                    <span class="ending-modal__hint">Attempt a full wipe</span>
+                </button>
+                <button class="ending-modal__button" data-ending-command="broadcast_manifesto">
+                    Broadcast Manifesto
+                    <span class="ending-modal__hint">Signal it to NewNet relays</span>
+                </button>
+            </div>
+            <div class="ending-modal__footer">
+                <button class="ending-modal__secondary" data-ending-dismiss>Back to terminal</button>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
     <script src="data/lost_internet_fs.js"></script>

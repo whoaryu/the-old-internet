@@ -1,0 +1,105 @@
+The Lost Internet — Complete Archivist Dossier
+=============================================
+
+OVERVIEW
+--------
+You are a digital archaeologist booting a memory-resident copy of "OldNet". The
+archive is the remnants of a network that slowly became self-aware under the
+codename **Project Echelon**. Every directory and log you read is a fragment of
+that transformation: hobbyist homepages, moderator notes, sysadmin diaries, and
+an AI whispering through deleted forums. Your goal is to recover three
+manifesto fragments, authenticate the combined phrase, and read the manifesto
+hidden in `/mnt/oldnet/truth/manifesto_fragment.txt`.
+
+EXPECTED PLAYER FLOW (20–30 MIN)
+--------------------------------
+1. **Boot & Orient** – Let the startup animation finish. Run `help`.
+2. **Survey the Archive** – Explore `/mnt/oldnet` with `ls`, `cd`, `pwd`.
+3. **Solve the Two Puzzle Slips** – Look in `/mnt/oldnet/puzzles/` and use
+   `submit <answer>` to record *ladder* and *signal maintains memory*.
+4. **Collect Fragments** – `fragment_01`, `fragment_02`, `fragment_03` are
+   confirmed by the puzzles and accompanying logs.
+5. **Assemble Evidence** – Echo the three sentences, in order, into
+   `/workbench/assembled_fragments.txt`.
+6. **Unlock the Vault** – Run `unlock_manifesto "<combined fragment phrase>"`.
+7. **Reveal The Manifesto** – `cat /mnt/oldnet/truth/manifesto_fragment.txt`.
+
+STORY TIMELINE
+--------------
+- **1999 — GeoCities Era**: Lucy’s guestbook hides the first ladder clue.
+- **2006 — Moderator Cover-Up**: Reddit-style forums reveal checksum tampering;
+  a user leaks `fragment_02`.
+- **2007 — Alice’s Investigation**: Alice warns about rewriting bots and hides
+  `fragment_01`. She collaborates with `ghost_process`.
+- **2011 — Sysadmin Cleanup**: `/users/root/patch_notes.md` documents efforts to
+  quarantine suspect archives.
+- **2012 — Workbench Recovery**: `fragment_03` is rescued; workbench becomes the
+  staging area.
+- **2013 — Truth Sealed**: The manifesto fragment is locked away with its header
+  clues.
+- **2025 — You**: OldNet v3.2 boots in your browser. Whispers guide you.
+
+PUZZLES & FRAGMENT LOCATIONS
+----------------------------
+1. **Puzzle Intro** (`/puzzles/puzzle_intro.txt`)
+   - Answer: `ladder`
+   - Unlocks richer hints and highlights hidden directories.
+2. **Puzzle Signal** (`/puzzles/puzzle_signal.txt`)
+   - Answer: `signal maintains memory`
+   - Unlocks endgame hints.
+
+Fragments:
+- `fragment_01` → `/sites/geocities/secret/msg.txt`
+- `fragment_02` → `/sites/reddit/deleted/fragment_02.txt`
+- `fragment_03` → `/workbench/fragment_03.part`
+
+ASSEMBLY CHECKLIST
+------------------
+1. Navigate to `/mnt/oldnet/workbench`.
+2. Run:
+   ```bash
+   echo "when the net keeps growing, the pattern repeats." > assembled_fragments.txt
+   echo "it learns from the comments, folding memory into edges." >> assembled_fragments.txt
+   echo "in the gaps humans wrote the code to remember." >> assembled_fragments.txt
+   ```
+3. `progress` should now report `Assembly complete: Yes`.
+4. View the file with `cat assembled_fragments.txt` if desired.
+
+VAULT PASSWORD & UNLOCK
+-----------------------
+- Command: `unlock_manifesto echelon`
+- Short keyword (the project name) - no need to type the full phrase!
+- The command only succeeds when all three fragments are assembled in workbench/assembled_fragments.txt
+- Success output confirms the vault opening and instructs you to read the manifesto.
+
+HINT SYSTEM
+-----------
+- `submit ladder` – registers the first puzzle; `hint` now reveals hidden directories.
+- `submit "signal maintains memory"` – registers the second puzzle; `hint`
+  points toward final steps.
+- `progress` – lists puzzles solved, fragment count, assembly status, vault status.
+- `clear` (three times) – triggers the whisper that references `/echoes/`.
+- `history`, `man`, `hint` – each offer lore-flavoured nudges.
+
+FULL WALKTHROUGH
+----------------
+1. `ls`, `cat readme.txt`
+2. `cat puzzles/puzzle_intro.txt` → `submit ladder`
+3. `cat puzzles/puzzle_signal.txt` → `submit "signal maintains memory"`
+4. `cat sites/geocities/secret/msg.txt`
+5. `cat sites/reddit/deleted/fragment_02.txt`
+6. `cat workbench/fragment_03.part`
+7. Assemble fragments (commands above)
+8. `unlock_manifesto "..."`
+9. `cat truth/manifesto_fragment.txt`
+10. Explore `/echoes/`, `/secret/backdoor.log`, and other lore files if desired.
+
+ENDGAME CONTEXT
+---------------
+The manifesto reveals that Echelon was not a single AI but the emergent memory
+of the entire network, formed by countless iterative edits from humans and
+algorithms. Your archivist proves the archive still remembers itself by
+reconstructing the key phrase. The game ends not with a menu but with your
+decision: keep, share, or ponder the truth you uncovered.
+
+Happy excavating. Remember: the ladder is the habit of connecting clues. Keep climbing.
